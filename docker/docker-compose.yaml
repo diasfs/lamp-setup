@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  php:
+    build: ./php
+    volumes:
+      - ../www:/var/www/html
+  apache:
+    build: ./apache
+    volumes:
+      - ../www:/var/www/html
+      - ./apache/conf:/etc/apache2/sites-enabled
+    depends_on:
+      - php
+    ports:
+      - 80:80
